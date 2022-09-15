@@ -1,40 +1,21 @@
-const Player = require('../lib/Player.js');
 const Potion = require('../lib/Potion.js');
 
-jest.mock('../lib/Potion.js');
+test('creates a health potion object', () => {
+  const potion = new Potion('health');
 
-test('creates a player object', () => {
-  const player = new Player('Dave');
-
-  expect(player.name).toBe('Dave');
-  expect(player.health).toEqual(expect.any(Number));
-  expect(player.strength).toEqual(expect.any(Number));
-  expect(player.agility).toEqual(expect.any(Number));
-
-  expect(player.inventory).toEqual(
-    expect.arrayContaining([expect.any(Object)])
-  );
+  expect(potion.name).toBe('health');
+  expect(potion.value).toEqual(expect.any(Number));
 });
 
-test("gets player's stats as an object", () => {
-  const player = new Player('Dave');
+test('creates a health potion object', () => {
+      
+  const potion = new Potion();
 
-  expect(player.getStats()).toHaveProperty('potions');
-  expect(player.getStats()).toHaveProperty('health');
-  expect(player.getStats()).toHaveProperty('strength');
-  expect(player.getStats()).toHaveProperty('agility');
+  expect(potion.name).toEqual(expect.any(String));
+  expect(potion.name.length).toBeGreaterThan(0);
+  expect(potion.value).toEqual(expect.any(Number));
+
 });
-
-test('gets inventory from player or returns false', () => {
-  const player = new Player('Dave');
-
-  expect(player.getInventory()).toEqual(expect.any(Array));
-
-  player.inventory = [];
-
-  expect(player.getInventory()).toEqual(false);
-});
-
 
 
 
